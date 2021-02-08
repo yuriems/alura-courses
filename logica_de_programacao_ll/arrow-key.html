@@ -1,0 +1,52 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+
+var canvas = document.querySelector("canvas");
+var brush = canvas.getContext("2d");
+brush.fillStyle = "lightgrey";
+brush.fillRect(0, 0, 600, 400);
+
+var x = 20;
+var y = 20;
+
+var left = 37;
+var up = 38;
+var right = 39;
+var down = 40;
+
+var rate = 10;
+
+function drawCircle(x, y, radius, color) {
+	brush.fillStyle = color;
+	brush.beginPath();
+	brush.arc(x, y, radius, 0, 2 * Math.PI);
+	brush.fill();
+}
+
+function clearScreen() {
+	brush.clearRect(0, 0, 600, 400);
+}
+
+function upDateScreen() {
+	clearScreen();
+	drawCircle(x, y, 10, "darkorange");
+}
+
+setInterval(upDateScreen, 20);
+
+function readKeyboard(event) {
+	if(event.keyCode == left) {
+		x = x - rate;
+	} else if(event.keyCode == right) {
+		x = x + rate;
+	} else if(event.keyCode == up) {
+		y = y - rate;
+	} else if(event.keyCode == down) {
+		y = y + rate;
+	}
+}
+
+document.onkeydown = readKeyboard;
+
+</script>

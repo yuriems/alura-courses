@@ -1,0 +1,58 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var canvas = document.querySelector("canvas");
+	var brush = canvas.getContext("2d");
+
+	brush.fillStyle = "lightgrey";
+	brush.fillRect(0, 0, 600, 400);
+
+	var radius = 10;
+	var randomx;
+	var randomy;
+
+	function drawcircle(x, y, radius, color) {
+		brush.fillStyle = color;
+		brush.beginPath();
+		brush.arc(x, y, radius, 0, 2 * Math.PI);
+		brush.fill();
+	}
+
+	function clearScreen() {
+		brush.clearRect(0, 0, 600, 400);
+	}
+
+	function drawTarget(x, y) {
+		drawcircle(x, y, radius + 20, "red");
+		drawcircle(x, y, radius + 10, "white");
+		drawcircle(x, y, radius, "red");
+	}
+
+	function drawPosition(maximo) {
+		return Math.floor(Math.random() * maximo);
+	}
+
+	function upDateScreen() {
+		clearScreen();
+		randomx = drawPosition(600);
+		randomy = drawPosition(400);
+		drawTarget(randomx, randomy);
+	}
+
+	setInterval(upDateScreen, 1000);
+
+	function shoot(mouseEvent) {
+		var x = mouseEvent.pageX - canvas.offsetLeft;
+		var y = mouseEvent.pageY - canvas.offsetTop;
+		if(x > randomx - radius
+			&& x < randomx + radius
+				&& y > randomy - radius
+					&& y < randomy + radius) {
+			alert("You got it!!!");
+		}
+	}
+
+	canvas.onclick = shoot;
+
+</script>
