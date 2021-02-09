@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+
+<script>
+
+function pulaLinha() {
+	document.write("<br>");
+}
+
+function mostra(frase) {
+	document.write(frase);
+	pulaLinha();
+}
+
+var descobrimentoDoBrasil = 1500;
+var anoAtual = 2020;
+var idadeMediaQuandoTemFilhos = 28;
+var quantidadeDeGeracoes = Math.round((anoAtual - descobrimentoDoBrasil)/idadeMediaQuandoTemFilhos);
+
+mostra("Passaram " + quantidadeDeGeracoes + " gerações desde a descoberta do Brasil.");
+
+</script>

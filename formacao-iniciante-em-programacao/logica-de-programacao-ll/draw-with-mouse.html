@@ -1,0 +1,37 @@
+<canvas width="600" height="400"></canvas>
+
+<h3>Escolha uma cor <input type="color"></h3>
+
+<script>
+    var canvas = document.querySelector("canvas");
+    var input = document.querySelector("input");
+    var brush = canvas.getContext("2d");
+    var draw = false;
+
+    brush.fillStyle = 'grey';
+    brush.fillRect(0, 0, 600, 400);
+
+    function drawCircle(mouseEvent) {
+        if (draw) {
+            var x = mouseEvent.pageX - canvas.offsetLeft;
+            var y = mouseEvent.pageY - canvas.offsetTop;
+            brush.fillStyle = input.value;
+            brush.beginPath();
+            brush.arc(x, y, 10, 0, 2 * 3.14);
+            brush.fill();
+        }
+        console.log(input.value);
+    }
+
+    canvas.onmousemove = drawCircle;
+
+    canvas.onmousedown = function() {
+        draw = true;
+    }
+
+    canvas.onmouseup = function(){
+        draw = false;
+    }
+
+
+</script>

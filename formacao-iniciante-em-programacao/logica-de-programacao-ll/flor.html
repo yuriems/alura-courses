@@ -1,0 +1,28 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+	
+	var canvas = document.querySelector("canvas");
+	var brush = canvas.getContext("2d");
+
+	brush.fillStyle = "lightgrey";
+	brush.fillRect(0, 0, 600, 400);
+
+	function drawcircle(x, y, radius, color) {
+		brush.fillStyle = color;
+		brush.beginPath();
+		brush.arc(x, y, radius, 0, 2 * 3.14);
+		brush.fill();
+	}
+
+	function drawflower(x, y){
+		drawcircle(x, y, 15, "red");
+		drawcircle(x+30, y, 15, "black");
+		drawcircle(x-30, y, 15, "orange");
+		drawcircle(x, y+30, 15, "yellow");
+		drawcircle(x, y-30, 15, "blue");
+	}
+
+	drawflower(300, 200);
+
+</script>
